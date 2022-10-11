@@ -7,5 +7,11 @@
     type="spawn_model"
     args="-file $(find hola_bot)/urdf/hola_bot.urdf -urdf -model hola_bot"
     output="screen" />
+
+  <!-- <node 
+    name="controller"
+    pkg="hola_bot"
+    type="controller.py"
+    output="screen" /> -->
 </launch>
 
