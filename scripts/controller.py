@@ -85,8 +85,8 @@ def linear_vel_y(goal_x, goal_y, constant=2):
     return constant * math.sin(steering_angle(goal_x, goal_y)-hola_theta)
 
 
-def angular_vel(goal_x, goal_y, constant=6):
-    return constant * (steering_angle(goal_x, goal_y) - hola_theta)
+def angular_vel(goal_theta, constant=3):
+    return constant * (goal_theta-hola_theta)
 
 def angle_range(theta):
     theta = theta%(2*math.pi) 
@@ -130,8 +130,9 @@ def move2goal(goal_x, goal_y, goal_theta):
 
     msg.angular.z = 0
     while euclidean_distance(goal_x, goal_y) >= distance_tolerence:
-        msg.linear.x = linear_vel_x(goal_x, goal_y, 0.5)
-        msg.linear.y = linear_vel_y(goal_x, goal_y, 0.5)
+        msg.linear.x = linear_vel_x(goal_x, goal_y, .5)
+        msg.linear.y = linear_vel_y(goal_x, goal_y, .5)
+        msg.angular.z = angular_vel(goal_theta)
         pub.publish(msg)
         print(goal_x, goal_y, hola_x, hola_y)
         rate.sleep()
@@ -157,7 +158,7 @@ def main():
                 move2goal(goal_x, goal_y, goal_theta)
                 rotate(goal_theta)
                 rospy.loginfo("Reached goal: {}, {}, {}".format(goal_x, goal_y, goal_theta))
-                sleep(1)
+                sleep(3)
             x_goals.clear()
             y_goals.clear()
             theta_goals.clear()
