@@ -12,6 +12,6 @@
     name="controller"
     pkg="hola_bot"
     type="controller.py"
-    output="screen" /> -->
+    output="screen" />  -->
 </launch>
 
