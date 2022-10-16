@@ -88,12 +88,16 @@ def linear_vel_y(goal_x, goal_y, constant=2):
 def angular_vel(goal_x, goal_y, constant=6):
     return constant * (steering_angle(goal_x, goal_y) - hola_theta)
 
+def angle_range(theta):
+    theta = theta%(2*math.pi) 
+    if theta > math.pi or theta < -math.pi:
+        theta = theta - 2*math.pi if theta > 0 else theta + 2*math.pi
+    return theta
 
 def rotate(goal_theta,angular_speed=1.5):
     global hola_theta
 
-    if goal_theta > math.pi or goal_theta < -math.pi:
-        goal_theta = goal_theta - 2*math.pi if goal_theta > 0 else goal_theta + 2*math.pi
+    goal_theta = angle_range(goal_theta)
 
     print("goal_theta: {}".format(goal_theta))
     
