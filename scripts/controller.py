@@ -124,7 +124,8 @@ def move2goal(goal_x, goal_y, goal_theta):
     global hola_x, hola_y, hola_theta
 
     print("goal_x: {}, goal_y: {}, goal_theta: {}".format(goal_x, goal_y, goal_theta))
-
+    
+    goal_theta = angle_range(goal_theta)
     distance_tolerence = 0.01
     msg = Twist()
 
